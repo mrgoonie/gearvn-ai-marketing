@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Góc Nhìn AI Năm 2026 - Duy Nguyen | AI Workforce Workshop</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <style>
         /*
         =====================================================
@@ -96,6 +95,7 @@
             align-items: center;
             text-align: center;
             padding: var(--space-xl);
+            padding-bottom: 100px;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.4s ease, transform 0.4s ease;
@@ -114,6 +114,30 @@
 
         .slide.yellow {
             background: var(--color-yellow);
+            color: var(--color-black);
+        }
+
+        .slide.yellow .slide-title,
+        .slide.yellow .slide-subtitle,
+        .slide.yellow .slide-text,
+        .slide.yellow h2,
+        .slide.yellow h3,
+        .slide.yellow h4,
+        .slide.yellow p,
+        .slide.yellow li,
+        .slide.yellow .mono,
+        .slide.yellow .step-title,
+        .slide.yellow .step-desc,
+        .slide.yellow .brutal-list li {
+            color: var(--color-black);
+        }
+
+        .slide.yellow .slide-subtitle {
+            color: var(--color-text-secondary);
+        }
+
+        .slide.yellow .step-desc {
+            color: var(--color-text-muted);
         }
 
         .slide.red {
@@ -156,6 +180,7 @@
 
         .slide-title.brutal {
             background: var(--color-yellow);
+            color: var(--color-black);
             padding: var(--space-sm) var(--space-md);
             border: var(--border-thick);
             box-shadow: var(--shadow-brutal);
@@ -203,6 +228,7 @@
 
         .highlight-yellow {
             background: var(--color-yellow);
+            color: var(--color-black);
             padding: 4px 12px;
             border: 2px solid var(--color-black);
         }
@@ -603,6 +629,16 @@
         .delay-4 { animation-delay: 0.4s; }
         .delay-5 { animation-delay: 0.5s; }
 
+        @keyframes pulse-wow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .wow-animate {
+            display: inline-block;
+            animation: pulse-wow 1.5s ease-in-out infinite;
+        }
+
         /*
         =====================================================
         RESPONSIVE
@@ -641,7 +677,16 @@
         -->
         <div class="slide dark active" id="slide-1">
             <span class="slide-number">01</span>
-            <h1 class="slide-title brutal animate-fade-up">
+            <!-- Sponsor Logos -->
+            <div class="animate-fade-up" style="position: absolute; top: var(--space-md); right: var(--space-md); display: flex; align-items: center; gap: var(--space-sm);">
+                <div style="background: var(--color-white); padding: 12px 20px; border: var(--border-medium); box-shadow: var(--shadow-brutal-sm); height: 72px; display: flex; align-items: center; justify-content: center;">
+                    <img src="assets/logo-gearvn.webp" alt="GEARVN" style="height: 48px; object-fit: contain; display: block;">
+                </div>
+                <div style="background: var(--color-white); padding: 12px 20px; border: var(--border-medium); box-shadow: var(--shadow-brutal-sm); height: 72px; display: flex; align-items: center; justify-content: center;">
+                    <img src="assets/logo-nvidia.png" alt="NVIDIA" style="height: 48px; object-fit: contain; display: block;">
+                </div>
+            </div>
+            <h1 class="slide-title brutal animate-fade-up" style="color: var(--color-black);">
                 GÓC NHÌN AI<br>NĂM 2026
             </h1>
             <p class="slide-subtitle animate-fade-up delay-1">
@@ -649,7 +694,7 @@
                 Ứng dụng AI trong Marketing để tăng trưởng thực tế
             </p>
             <div class="speaker-info animate-fade-up delay-2">
-                <div class="speaker-avatar">DN</div>
+                <img src="assets/duy-profile-pic.jpg" alt="Duy Nguyen" class="speaker-avatar" style="object-fit: cover;">
                 <div class="speaker-details">
                     <div class="speaker-name">Duy Nguyen</div>
                     <div class="speaker-title">CTO, TOP Group | Creator of ClaudeKit</div>
@@ -662,72 +707,80 @@
 
         <!--
         =====================================================
-        SLIDE 2: HOOK
+        SLIDE 2: SPEAKER INTRODUCTION
         =====================================================
         -->
-        <div class="slide yellow" id="slide-2">
+        <div class="slide" id="slide-2">
             <span class="slide-number">02</span>
-            <div class="quote animate-fade-up">
-                "2025 vả cho không trượt phát nào"
+            <h2 class="slide-title animate-fade-up" style="font-size: clamp(24px, 3.5vw, 40px); margin-bottom: var(--space-xs);">
+                XIN CHÀO!
+            </h2>
+            <div class="brutal-card animate-fade-up delay-1" style="max-width: 800px; text-align: left; margin-top: var(--space-sm); padding: var(--space-sm);">
+                <p style="font-size: 16px; margin-bottom: var(--space-sm);">
+                    Mình là <strong>Duy (Goon)</strong>, một người đam mê công nghệ:
+                </p>
+                <ul class="brutal-list" style="margin: 0;">
+                    <li style="font-size: 15px; padding: 8px;"><strong>9+ năm</strong> tại JWT (WPP) - Technical Director</li>
+                    <li style="font-size: 15px; padding: 8px;"><strong>Co-founder/CTO</strong> tại T.O.P Group Vietnam - truyền thông & quảng cáo</li>
+                    <li style="font-size: 15px; padding: 8px;"><strong>Co-founder/CTO</strong> tại Xin Chào Live Music - giải trí & âm nhạc</li>
+                    <li style="font-size: 15px; padding: 8px;"><strong>Founder</strong> cộng đồng "Build in Public VN" - <span class="highlight-yellow">40K+ members</span></li>
+                    <li style="font-size: 15px; padding: 8px;"><strong>Founder</strong> ClaudeKit - <span class="highlight-blue">3K+ users</span> tại 109 quốc gia</li>
+                    <li style="font-size: 15px; padding: 8px;">Tự xây dựng <span class="highlight-red">15 sản phẩm SaaS/AI</span> kinh doanh global</li>
+                </ul>
             </div>
-            <p class="slide-text animate-fade-up delay-1" style="margin-top: var(--space-lg);">
-                Nhưng nếu số phận đã an bài cho mình phải luôn lần mò và mài giũa,<br>
-                thì thôi mình chọn tận hưởng hành trình này vậy.
-            </p>
-            <p class="animate-fade-up delay-2" style="margin-top: var(--space-md); font-size: 32px; font-weight: 700;">
-                <span class="highlight-red">fck around & find out</span>
+            <p class="mono animate-fade-up delay-2" style="margin-top: var(--space-sm); font-size: 13px; color: var(--color-text-muted);">
+                (Chia sẻ kinh nghiệm nghiên cứu, sử dụng và triển khai AI thực tiễn)
             </p>
         </div>
 
         <!--
         =====================================================
-        SLIDE 3: AI LANDSCAPE 2026
+        SLIDE 3: AGENTIC WORKING
         =====================================================
         -->
         <div class="slide dark" id="slide-3">
             <span class="slide-number">03</span>
-            <h2 class="slide-title animate-fade-up">AI LANDSCAPE 2026</h2>
-            <p class="slide-subtitle animate-fade-up delay-1">3 xu hướng định hình tương lai</p>
-            <div class="keywords animate-fade-up delay-2">
-                <span class="keyword yellow">AGENTIC CODING</span>
-                <span class="keyword red">ON-THE-FLY SOFTWARE</span>
-                <span class="keyword blue">AI RACE</span>
+            <h2 class="slide-title animate-fade-up">AGENTIC WORKING</h2>
+            <p class="slide-subtitle animate-fade-up delay-1">Agent Skills của Anthropic - Game Changer!</p>
+            <div class="brutal-card animate-fade-up delay-2" style="max-width: 800px; text-align: left; background: rgba(255,255,255,0.1);">
+                <p style="font-size: 20px; color: white; line-height: 1.8;">
+                    <strong style="color: var(--color-yellow);">Agent Skills</strong> = Cấp kỹ năng & kinh nghiệm của con người cho AI agents
+                </p>
+                <ul class="brutal-list" style="margin-top: var(--space-sm);">
+                    <li style="background: rgba(255,255,255,0.05);"><strong>Thay đổi cuộc chơi:</strong> AI agents trở nên hữu ích hơn bao giờ hết</li>
+                    <li style="background: rgba(255,255,255,0.05);"><strong>Nâng tầm tự động hoá:</strong> Từ code đến marketing, mọi thứ đều có thể</li>
+                    <li style="background: rgba(255,255,255,0.05);"><strong>Ví dụ:</strong> "ai-artist" skill → viết prompt cho Nano Banana → gen ảnh minh hoạ</li>
+                </ul>
             </div>
-            <!--
-            NANO BANANA PROMPT (Slide 3):
-            Technical blueprint illustration of a futuristic AI landscape in 2026. Isometric view showing three interconnected platforms: (1) Agentic Coding - robots controlling code agents, (2) On-the-Fly Software - self-building software structures, (3) AI Race - abstract company towers competing. Style: Neobrutalism technical drawing with bold black outlines 4px, yellow #FFEB3B, red #FF5252, blue #2196F3 accent colors. Circuit board patterns in background. Wireframe aesthetic. NEVER include text or watermarks. Aspect ratio 16:9. Professional technical illustration.
-            -->
-            <div class="image-placeholder animate-fade-up delay-3">
-                <span class="label">ILLUSTRATION: AI LANDSCAPE</span>
-                <small>Generate with Nano Banana using prompt above</small>
-            </div>
+            <p class="mono animate-fade-up delay-3" style="margin-top: var(--space-md); font-size: 16px; color: var(--color-yellow);">
+                → Demo "AI LANDSCAPE" illustration sẽ có ở phần sau
+            </p>
         </div>
 
         <!--
         =====================================================
-        SLIDE 4: AGENTIC VS VIBE CODING
+        SLIDE 4: AGENTIC VS VIBE CODING/WORKING
         =====================================================
         -->
         <div class="slide" id="slide-4">
             <span class="slide-number">04</span>
-            <h2 class="slide-title animate-fade-up" style="font-size: clamp(28px, 4vw, 48px);">
+            <h2 class="slide-title animate-fade-up" style="font-size: clamp(24px, 3.5vw, 40px);">
                 "AGENTIC CODING" vs "VIBE CODING"
             </h2>
-            <div class="vs-container animate-fade-up delay-1" style="margin: var(--space-lg) 0;">
+            <h3 class="slide-subtitle animate-fade-up delay-1" style="font-size: clamp(20px, 3vw, 32px); margin-bottom: var(--space-sm);">
+                <span class="highlight-yellow">"AGENTIC WORKING"</span> vs <span class="highlight-red">"VIBE WORKING"</span>
+            </h3>
+            <div class="vs-container animate-fade-up delay-2" style="margin: var(--space-md) 0;">
                 <div class="vs-item" style="background: var(--color-yellow);">GENERALIST</div>
                 <span class="vs-divider">&gt;</span>
                 <div class="vs-item" style="background: var(--color-red); color: white;">SPECIALIST</div>
             </div>
-            <ul class="brutal-list animate-fade-up delay-2">
+            <ul class="brutal-list animate-fade-up delay-3">
                 <li><strong>Kiểm soát AI</strong>, không thả rông</li>
                 <li>Biết <strong>"lái"</strong> AI, không cần biết hết chi tiết</li>
                 <li>Quan sát agents → <strong>Học hỏi</strong> → Điều hướng</li>
                 <li><strong>Context Engineering</strong> - cho cả human & AI</li>
             </ul>
-            <!--
-            NANO BANANA PROMPT (Slide 4):
-            Technical illustration of a human pilot in cockpit controlling multiple AI robot agents. Isometric blueprint style. The pilot has steering wheel and dashboard with metrics. 5-6 small robot agents are executing code tasks around. Style: Neobrutalism with bold black outlines 4px, yellow #FFEB3B highlights on dashboard, red #FF5252 on warning indicators, blue #2196F3 on robots. Wireframe and circuit patterns. NEVER include text. Aspect ratio 16:9.
-            -->
         </div>
 
         <!--
@@ -737,130 +790,68 @@
         -->
         <div class="slide dark" id="slide-5">
             <span class="slide-number">05</span>
-            <h2 class="slide-title animate-fade-up">PHẦN MỀM "ON THE FLY"</h2>
-            <div class="quote animate-fade-up delay-1" style="border-left-color: var(--color-blue);">
+            <h2 class="slide-title animate-fade-up" style="font-size: clamp(24px, 4vw, 48px); margin-bottom: var(--space-sm);">PHẦN MỀM "ON THE FLY"</h2>
+            <div class="quote animate-fade-up delay-1" style="border-left-color: var(--color-blue); font-size: clamp(18px, 2.5vw, 32px); padding: var(--space-sm); max-width: 700px;">
                 "100% code của Claude Code bây giờ do chính nó viết"
-                <br><small style="font-style: normal; font-size: 16px; opacity: 0.7;">— Boris, Creator of Claude Code</small>
+                <br><small style="font-style: normal; font-size: 14px; opacity: 0.7;">— Boris, Creator of Claude Code</small>
             </div>
-            <p class="slide-text animate-fade-up delay-2" style="margin-top: var(--space-lg);">
+            <p class="slide-text animate-fade-up delay-2" style="margin-top: var(--space-sm); font-size: clamp(16px, 2vw, 22px);">
                 Software có thể <span class="highlight-yellow">tự phát triển chính mình</span><br>
                 hoặc <span class="highlight-blue">tự sinh ra phần mềm con</span> "on the fly"
             </p>
-            <!--
-            NANO BANANA PROMPT (Slide 5):
-            Technical blueprint of self-evolving software concept. Central large cube/block generating smaller cubes automatically. Conveyor belt of code blocks being assembled. Robotic arms building software modules. Style: Neobrutalism isometric view, bold black outlines 4px, yellow #FFEB3B for main structure, blue #2196F3 for generated modules, red #FF5252 for energy/power indicators. Circuit board background pattern. Wireframe aesthetic. NEVER include text. Aspect ratio 16:9.
-            -->
-            <div class="image-placeholder animate-fade-up delay-3" style="max-width: 500px;">
-                <span class="label">ILLUSTRATION: SELF-BUILDING SOFTWARE</span>
-                <small>Generate with Nano Banana using prompt above</small>
+            <div class="animate-fade-up delay-3" style="max-width: 500px; border: var(--border-thick); box-shadow: var(--shadow-brutal); margin-top: var(--space-sm);">
+                <img src="assets/slide-05-software-on-the-fly.png" alt="Self-Building Software Illustration" style="width: 100%; display: block;">
             </div>
         </div>
 
         <!--
         =====================================================
-        SLIDE 6: AI RACE
+        SLIDE 6: PHẦN MỀM CÁ NHÂN HOÁ - CONCEPT
         =====================================================
         -->
-        <div class="slide" id="slide-6">
+        <div class="slide dark" id="slide-6">
             <span class="slide-number">06</span>
-            <h2 class="slide-title animate-fade-up" style="font-size: clamp(24px, 3.5vw, 42px);">
-                AI RACE: AI SẼ VỀ ĐÂU?
-            </h2>
-            <div class="cards-grid animate-fade-up delay-1" style="margin-top: var(--space-md);">
-                <div class="brutal-card">
-                    <h3 style="font-size: 24px; margin-bottom: 8px;">OpenAI / ChatGPT</h3>
-                    <p style="color: var(--color-red); font-weight: 700;">Đang mất dần vị thế?</p>
-                    <p style="font-size: 14px; color: var(--color-text-muted); margin-top: 8px;">Lan man, thiếu focus</p>
-                </div>
-                <div class="brutal-card yellow">
-                    <h3 style="font-size: 24px; margin-bottom: 8px;">Google / Gemini</h3>
-                    <p style="color: var(--color-black); font-weight: 700;">Will Win</p>
-                    <p style="font-size: 14px; margin-top: 8px;">Unfair advantage: Hạ tầng + Hệ sinh thái</p>
-                </div>
-                <div class="brutal-card blue">
-                    <h3 style="font-size: 24px; margin-bottom: 8px;">Anthropic / Claude</h3>
-                    <p style="font-weight: 700;">Unbeatable in Coding</p>
-                    <p style="font-size: 14px; margin-top: 8px;">Dồn toàn lực cho niche</p>
-                </div>
-            </div>
-            <p class="mono animate-fade-up delay-2" style="margin-top: var(--space-md); font-size: 18px;">
-                <span class="highlight-yellow">Bet on Google.</span>
-            </p>
-        </div>
-
-        <!--
-        =====================================================
-        SLIDE 7: VIBE CODERS = OPPORTUNITY
-        =====================================================
-        -->
-        <div class="slide red" id="slide-7">
-            <span class="slide-number">07</span>
-            <h2 class="slide-title animate-fade-up" style="color: white;">
-                "VIBE CODERS"<br>= CƠ HỘI
-            </h2>
-            <div class="quote animate-fade-up delay-1" style="background: rgba(0,0,0,0.2); border-left-color: var(--color-yellow); color: white;">
-                "Họ đã / đang / sẽ đau"
-            </div>
-            <ul class="brutal-list animate-fade-up delay-2" style="margin-top: var(--space-md);">
-                <li style="background: rgba(0,0,0,0.2);">Không biết làm production-ready? <strong>Fix it.</strong></li>
-                <li style="background: rgba(0,0,0,0.2);">Không biết bảo mật? <strong>Fix it.</strong></li>
-                <li style="background: rgba(0,0,0,0.2);">Không biết deploy? <strong>Fix it.</strong></li>
-                <li style="background: rgba(0,0,0,0.2);">Không biết go-to-market? <strong>Fix it.</strong></li>
-            </ul>
-            <p class="animate-fade-up delay-3" style="margin-top: var(--space-md); font-size: 24px; font-weight: 700;">
-                Pain points của họ = <span class="highlight-yellow" style="color: black;">Cơ hội của bạn</span>
-            </p>
-        </div>
-
-        <!--
-        =====================================================
-        SLIDE 8: PHẦN MỀM CÁ NHÂN HOÁ - CONCEPT
-        =====================================================
-        -->
-        <div class="slide dark" id="slide-8">
-            <span class="slide-number">08</span>
-            <h2 class="slide-title animate-fade-up">
-                PHẦN MỀM<br>CÁ NHÂN HOÁ
+            <h2 class="slide-title animate-fade-up" style="font-size: clamp(28px, 4vw, 48px);">
+                PHẦN MỀM CÁ NHÂN HOÁ
             </h2>
             <p class="slide-subtitle animate-fade-up delay-1">
-                Build internal tools với <span class="highlight-yellow" style="color: black;">ZERO COST</span>
+                2026: Claude Opus 4.5 + Claude Code = <span class="highlight-yellow" style="color: black;">Game Changer</span>
             </p>
-            <div class="cards-row animate-fade-up delay-2">
-                <div class="brutal-card yellow" style="min-width: 200px;">
-                    <h4 style="font-size: 18px;">Mục tiêu</h4>
-                    <p style="font-size: 14px;">Tăng hiệu suất công việc</p>
+            <div class="brutal-card animate-fade-up delay-2" style="max-width: 800px; text-align: left; background: rgba(255,255,255,0.1);">
+                <ul class="brutal-list" style="margin: 0;">
+                    <li style="background: rgba(255,255,255,0.05);">Con người viết code <strong>không còn cần thiết</strong> → Ai cũng có thể tạo phần mềm</li>
+                    <li style="background: rgba(255,255,255,0.05);"><strong>SaaS có "ngỏm" không?</strong> → <span class="highlight-red">KHÔNG!</span></li>
+                    <li style="background: rgba(255,255,255,0.05);">Không phải ai cũng muốn bỏ <strong>$300 + 2 tuần</strong> để "vibe code"</li>
+                    <li style="background: rgba(255,255,255,0.05);">Họ vẫn trả <strong>$20</strong> để giải quyết vấn đề trong 15 phút → dùng 2 tuần đó kiếm <strong>$3,000</strong></li>
+                </ul>
+            </div>
+            <div class="cards-row animate-fade-up delay-3" style="margin-top: var(--space-md);">
+                <div class="brutal-card yellow" style="min-width: 280px; color: var(--color-black);">
+                    <h4 style="font-size: 18px; margin-bottom: 8px;">Consumers &gt; Creators</h4>
+                    <p style="font-size: 14px;">Luôn luôn là như vậy!</p>
                 </div>
-                <div class="brutal-card" style="min-width: 200px;">
-                    <h4 style="font-size: 18px;">Phạm vi</h4>
-                    <p style="font-size: 14px;">Sử dụng nội bộ</p>
-                </div>
-                <div class="brutal-card blue" style="min-width: 200px;">
-                    <h4 style="font-size: 18px;">Chi phí</h4>
-                    <p style="font-size: 14px;">$0 (AI làm hết)</p>
+                <div class="brutal-card blue" style="min-width: 280px;">
+                    <h4 style="font-size: 18px; margin-bottom: 8px;">SME Opportunity</h4>
+                    <p style="font-size: 14px;">Tự build phần mềm nội bộ → tiết kiệm chi phí & tuỳ biến 100%</p>
                 </div>
             </div>
-            <!--
-            NANO BANANA PROMPT (Slide 8):
-            Technical blueprint of a person at desk building custom software tools with AI assistance. Isometric view. Person with laptop, multiple floating tool windows around: calendar, dashboard, charts. Small robot assistant helping. Style: Neobrutalism with bold black outlines 4px, yellow #FFEB3B for highlights, blue #2196F3 for tool windows, red #FF5252 for important elements. Wireframe aesthetic, circuit patterns. NEVER include text. Aspect ratio 16:9.
-            -->
         </div>
 
         <!--
         =====================================================
-        SLIDE 9: DEMO - CONTENT CALENDAR
+        SLIDE 7: DEMO - CONTENT CALENDAR
         =====================================================
         -->
-        <div class="slide" id="slide-9">
-            <span class="slide-number">09</span>
+        <div class="slide" id="slide-7">
+            <span class="slide-number">07</span>
             <h2 class="slide-title animate-fade-up" style="font-size: clamp(24px, 3.5vw, 40px);">
                 DEMO: CONTENT CALENDAR
             </h2>
             <p class="slide-subtitle animate-fade-up delay-1">
                 Tự build tool quản lý content pipeline
             </p>
-            <div class="image-placeholder animate-fade-up delay-2">
-                <span class="label">SCREENSHOT: CONTENT CALENDAR TOOL</span>
-                <small>Replace with actual screenshot of your content calendar tool</small>
+            <div class="animate-fade-up delay-2" style="max-width: 900px; border: var(--border-thick); box-shadow: var(--shadow-brutal);">
+                <img src="assets/content-calendar.png" alt="Content Calendar Tool" style="width: 100%; display: block;">
             </div>
             <p class="mono animate-fade-up delay-3" style="margin-top: var(--space-sm); font-size: 14px; color: var(--color-text-muted);">
                 Built with Claude Code in ~2 hours
@@ -869,11 +860,11 @@
 
         <!--
         =====================================================
-        SLIDE 10: DEMO - AI ARTIST → NANO BANANA
+        SLIDE 8: DEMO - AI ARTIST → NANO BANANA
         =====================================================
         -->
-        <div class="slide yellow" id="slide-10">
-            <span class="slide-number">10</span>
+        <div class="slide yellow" id="slide-8">
+            <span class="slide-number">08</span>
             <h2 class="slide-title animate-fade-up" style="font-size: clamp(24px, 3.5vw, 40px);">
                 DEMO: AI ARTIST WORKFLOW
             </h2>
@@ -897,29 +888,36 @@
                     <div class="step-desc">Paste prompt → Generate image</div>
                 </div>
             </div>
-            <div class="image-placeholder animate-fade-up delay-3" style="margin-top: var(--space-md); max-width: 500px;">
-                <span class="label">OUTPUT: GENERATED IMAGE</span>
-                <small>Show actual Nano Banana output here</small>
+            <div class="cards-row animate-fade-up delay-3" style="margin-top: var(--space-md);">
+                <div style="max-width: 450px; border: var(--border-thick); box-shadow: var(--shadow-brutal);">
+                    <img src="assets/banner-04-photorealistic.png" alt="Photorealistic Output" style="width: 100%; display: block;">
+                    <div style="background: var(--color-black); color: var(--color-yellow); padding: 8px; text-align: center; font-family: var(--font-mono); font-size: 12px;">PHOTOREALISTIC</div>
+                </div>
+                <div style="max-width: 450px; border: var(--border-thick); box-shadow: var(--shadow-brutal);">
+                    <img src="assets/banner-05-anime.png" alt="Anime Output" style="width: 100%; display: block;">
+                    <div style="background: var(--color-black); color: var(--color-yellow); padding: 8px; text-align: center; font-family: var(--font-mono); font-size: 12px;">ANIME STYLE</div>
+                </div>
             </div>
         </div>
 
         <!--
         =====================================================
-        SLIDE 11: DEMO - VIDEO QUẢNG CÁO
+        SLIDE 9: DEMO - VIDEO QUẢNG CÁO
         =====================================================
         -->
-        <div class="slide dark" id="slide-11">
-            <span class="slide-number">11</span>
+        <div class="slide dark" id="slide-9">
+            <span class="slide-number">09</span>
             <h2 class="slide-title animate-fade-up" style="font-size: clamp(24px, 3.5vw, 40px);">
                 DEMO: VIDEO QUẢNG CÁO
             </h2>
             <p class="slide-subtitle animate-fade-up delay-1">
                 Claude Code → Script → Storyboard → Video
             </p>
-            <div class="image-placeholder animate-fade-up delay-2" style="aspect-ratio: 16/9; max-width: 700px;">
-                <span class="label">VIDEO: CLAUDE CODE SESSION</span>
-                <small>Embed pre-recorded video here</small>
-                <small style="margin-top: 8px;">Showing: Script generation + Storyboard creation</small>
+            <div class="animate-fade-up delay-2" style="max-width: 800px; border: var(--border-thick); box-shadow: var(--shadow-brutal); background: var(--color-black);">
+                <video controls style="width: 100%; display: block;" poster="">
+                    <source src="assets/records/video-storyboard.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
             <p class="mono animate-fade-up delay-3" style="margin-top: var(--space-sm); font-size: 14px;">
                 Tools: Claude Code + Veo 3 / Runway / Kling
@@ -928,11 +926,11 @@
 
         <!--
         =====================================================
-        SLIDE 12: WHY INTERNAL FIRST
+        SLIDE 10: WHY INTERNAL FIRST
         =====================================================
         -->
-        <div class="slide" id="slide-12">
-            <span class="slide-number">12</span>
+        <div class="slide" id="slide-10">
+            <span class="slide-number">10</span>
             <h2 class="slide-title animate-fade-up">
                 TẠI SAO<br>"NỘI BỘ TRƯỚC"?
             </h2>
@@ -952,11 +950,11 @@
 
         <!--
         =====================================================
-        SLIDE 13: AI TRONG MARKETING - OVERVIEW
+        SLIDE 11: AI TRONG MARKETING - OVERVIEW
         =====================================================
         -->
-        <div class="slide blue" id="slide-13">
-            <span class="slide-number">13</span>
+        <div class="slide blue" id="slide-11">
+            <span class="slide-number">11</span>
             <h2 class="slide-title animate-fade-up" style="color: white;">
                 AI TRONG<br>MARKETING
             </h2>
@@ -975,144 +973,260 @@
 
         <!--
         =====================================================
-        SLIDE 14: DEMO - BANNER GENERATION
+        SLIDE 12: DESIGN SOCIAL MEDIA PHOTO POST
         =====================================================
         -->
-        <div class="slide" id="slide-14">
-            <span class="slide-number">14</span>
+        <div class="slide" id="slide-12">
+            <span class="slide-number">12</span>
             <h2 class="slide-title animate-fade-up" style="font-size: clamp(24px, 3.5vw, 40px);">
-                DEMO: BANNER GENERATION
+                DESIGN SOCIAL MEDIA<br>PHOTO POST
             </h2>
             <p class="slide-subtitle animate-fade-up delay-1">
-                UI UX Pro Max Skill → Real Banner Output
+                Gemini Nano Banana Pro - Model gen hình mạnh mẽ nhất thế giới hiện tại
             </p>
-            <div class="cards-row animate-fade-up delay-2">
-                <div class="image-placeholder" style="max-width: 350px; aspect-ratio: 1/1;">
-                    <span class="label">INPUT: BRIEF</span>
-                    <small>"Banner cho Black Friday sale, neobrutalism style"</small>
-                </div>
-                <div style="font-size: 48px; display: flex; align-items: center;">→</div>
-                <div class="image-placeholder" style="max-width: 350px; aspect-ratio: 1/1;">
-                    <span class="label">OUTPUT: BANNER</span>
-                    <small>Replace with actual generated banner</small>
-                </div>
+            <div class="brutal-card yellow animate-fade-up delay-2" style="max-width: 700px;">
+                <h3 style="font-size: 24px; margin-bottom: var(--space-sm);">Vấn đề thường gặp</h3>
+                <p style="font-size: 18px; line-height: 1.6;">
+                    Bạn <strong>không biết viết prompt</strong> như thế nào cho đúng?<br>
+                    → Kết quả vẫn <span class="highlight-red">tệ</span>.
+                </p>
             </div>
-            <p class="mono animate-fade-up delay-3" style="margin-top: var(--space-sm); font-size: 14px; color: var(--color-text-muted);">
-                Time: ~30 seconds | Cost: $0.02
+            <p class="mono animate-fade-up delay-3" style="margin-top: var(--space-md); font-size: 16px;">
+                → Xem demo BEFORE vs AFTER ở slides tiếp theo
             </p>
         </div>
 
         <!--
         =====================================================
-        SLIDE 15: MARKET RESEARCH
+        SLIDE 13: NANO BANANA DEMO - BEFORE (THÔNG THƯỜNG)
+        =====================================================
+        -->
+        <div class="slide dark" id="slide-13">
+            <span class="slide-number">13</span>
+            <h2 class="slide-title animate-fade-up" style="font-size: clamp(20px, 3vw, 36px);">
+                DÙNG NANO BANANA PRO<br>THEO CÁCH THÔNG THƯỜNG
+            </h2>
+            <p class="slide-subtitle animate-fade-up delay-1">Kết quả khi viết prompt bình thường</p>
+            <div class="cards-row animate-fade-up delay-2" style="gap: var(--space-sm);">
+                <div style="max-width: 380px; border: var(--border-thick); box-shadow: var(--shadow-brutal);">
+                    <img src="assets/ai-artist-demo/before/kantar-trends-2026-v1-bento-grid.png" alt="Before 1" style="width: 100%; display: block;">
+                </div>
+                <div style="max-width: 380px; border: var(--border-thick); box-shadow: var(--shadow-brutal);">
+                    <img src="assets/ai-artist-demo/before/kantar-trends-2026-v2-timeline.png" alt="Before 2" style="width: 100%; display: block;">
+                </div>
+                <div style="max-width: 380px; border: var(--border-thick); box-shadow: var(--shadow-brutal);">
+                    <img src="assets/ai-artist-demo/before/kantar-trends-2026-v3-minimal-stats.png" alt="Before 3" style="width: 100%; display: block;">
+                </div>
+            </div>
+            <p class="mono animate-fade-up delay-3" style="margin-top: var(--space-sm); font-size: 14px; color: rgba(255,255,255,0.6);">
+                Kết quả: Ổn nhưng chưa ấn tượng
+            </p>
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 14: NANO BANANA DEMO - AFTER (AI-ARTIST SKILL)
+        =====================================================
+        -->
+        <div class="slide yellow" id="slide-14">
+            <span class="slide-number">14</span>
+            <h2 class="slide-title animate-fade-up" style="font-size: clamp(20px, 3vw, 36px);">
+                DÙNG NANO BANANA PRO<br>VỚI AI-ARTIST SKILL
+            </h2>
+            <p class="slide-subtitle animate-fade-up delay-1" style="color: var(--color-black);">Kết quả khi dùng skill để viết prompt</p>
+            <div class="cards-row animate-fade-up delay-2" style="gap: var(--space-sm);">
+                <div style="max-width: 380px; border: var(--border-thick); box-shadow: var(--shadow-brutal);">
+                    <img src="assets/ai-artist-demo/after/kantar-trends-2026-v4-cyberpunk-neon.png" alt="After 1" style="width: 100%; display: block;">
+                </div>
+                <div style="max-width: 380px; border: var(--border-thick); box-shadow: var(--shadow-brutal);">
+                    <img src="assets/ai-artist-demo/after/kantar-trends-2026-v5-vaporwave.png" alt="After 2" style="width: 100%; display: block;">
+                </div>
+                <div style="max-width: 380px; border: var(--border-thick); box-shadow: var(--shadow-brutal);">
+                    <img src="assets/ai-artist-demo/after/kantar-trends-2026-v6-isometric-city.png" alt="After 3" style="width: 100%; display: block;">
+                </div>
+            </div>
+            <p class="mono animate-fade-up delay-3" style="margin-top: var(--space-sm); font-size: 14px;">
+                Kết quả: <span class="highlight-red wow-animate">🔥 WOW! 🔥</span>
+            </p>
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 15: DEMO - CIP TOP GROUP
         =====================================================
         -->
         <div class="slide dark" id="slide-15">
             <span class="slide-number">15</span>
-            <h2 class="slide-title animate-fade-up" style="font-size: clamp(24px, 3.5vw, 40px);">
-                MARKET RESEARCH<br>VỚI AI
+            <h2 class="slide-title animate-fade-up" style="font-size: clamp(20px, 3vw, 36px);">
+                DEMO: BỘ NHẬN DIỆN THƯƠNG HIỆU
             </h2>
             <p class="slide-subtitle animate-fade-up delay-1">
-                Competitor Analysis trong vài phút
+                Dùng Agent Skill để tạo bộ nhận diện thương hiệu <span class="highlight-yellow">TOP GROUP</span>
             </p>
-            <div class="cards-grid animate-fade-up delay-2" style="max-width: 900px;">
-                <div class="brutal-card">
-                    <h4 style="margin-bottom: 8px;">Web Scraping</h4>
-                    <p style="font-size: 14px;">Tự động thu thập data từ competitors</p>
-                </div>
-                <div class="brutal-card yellow">
-                    <h4 style="margin-bottom: 8px;">Deep Research</h4>
-                    <p style="font-size: 14px;">AI tổng hợp & phân tích insights</p>
-                </div>
-                <div class="brutal-card blue">
-                    <h4 style="margin-bottom: 8px;">Report Generation</h4>
-                    <p style="font-size: 14px;">Xuất báo cáo tự động</p>
-                </div>
+            <div class="animate-fade-up delay-2" style="max-width: 900px; border: var(--border-thick); box-shadow: var(--shadow-brutal); background: var(--color-black);">
+                <video autoplay loop muted playsinline style="width: 100%; display: block;">
+                    <source src="assets/records/cip-topgroup.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
-            <div class="image-placeholder animate-fade-up delay-3" style="margin-top: var(--space-md); max-width: 600px;">
-                <span class="label">SCREENSHOT: RESEARCH OUTPUT</span>
-                <small>Show competitor analysis report here</small>
-            </div>
+            <p class="mono animate-fade-up delay-3" style="margin-top: var(--space-sm); font-size: 14px;">
+                Tools: Claude Code + CIP Design Skill
+            </p>
         </div>
 
         <!--
         =====================================================
-        SLIDE 16: ANALYTICS INTEGRATION
+        SLIDE 16: DEMO - CIP SYNITY
         =====================================================
         -->
-        <div class="slide" id="slide-16">
+        <div class="slide yellow" id="slide-16">
             <span class="slide-number">16</span>
-            <h2 class="slide-title animate-fade-up" style="font-size: clamp(24px, 3.5vw, 40px);">
-                ANALYTICS + AI
+            <h2 class="slide-title animate-fade-up" style="font-size: clamp(20px, 3vw, 36px);">
+                DEMO: BỘ NHẬN DIỆN THƯƠNG HIỆU
             </h2>
-            <p class="slide-subtitle animate-fade-up delay-1">
-                Chrome Extensions + Claude Desktop / Antigravity
+            <p class="slide-subtitle animate-fade-up delay-1" style="color: var(--color-black);">
+                Dùng Agent Skill để tạo bộ nhận diện thương hiệu <span class="highlight-blue">SYNITY</span>
             </p>
-            <div class="steps animate-fade-up delay-2">
-                <div class="step" style="background: var(--color-yellow);">
-                    <div class="step-number" style="color: var(--color-black);">GA</div>
-                    <div class="step-title">Google Analytics</div>
-                    <div class="step-desc">Traffic & behavior data</div>
-                </div>
-                <div class="step">
-                    <div class="step-number">GT</div>
-                    <div class="step-title">Google Trends</div>
-                    <div class="step-desc">Search trends & seasonality</div>
-                </div>
-                <div class="step" style="background: var(--color-blue); color: white;">
-                    <div class="step-number" style="color: var(--color-yellow);">SC</div>
-                    <div class="step-title">Search Console</div>
-                    <div class="step-desc">SEO performance</div>
-                </div>
+            <div class="animate-fade-up delay-2" style="max-width: 750px; border: var(--border-thick); box-shadow: var(--shadow-brutal); background: var(--color-black);">
+                <video autoplay loop muted playsinline style="width: 100%; display: block;">
+                    <source src="assets/records/cip-synity.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
-            <p class="animate-fade-up delay-3" style="margin-top: var(--space-md); font-size: 18px;">
-                AI đọc data → <span class="highlight-yellow">Phân tích</span> → Đề xuất actions
+            <p class="mono animate-fade-up delay-3" style="margin-top: var(--space-sm); font-size: 14px;">
+                Tools: Claude Code + CIP Design Skill
             </p>
         </div>
 
         <!--
         =====================================================
-        SLIDE 17: CLAUDEKIT STORY
+        SLIDE 17: DEMO - AGENT SKILLS INTRO VIDEO
         =====================================================
         -->
-        <div class="slide yellow" id="slide-17">
+        <div class="slide dark" id="slide-17">
             <span class="slide-number">17</span>
-            <h2 class="slide-title animate-fade-up">CLAUDEKIT STORY</h2>
-            <p class="slide-subtitle animate-fade-up delay-1" style="color: var(--color-black);">
-                From 0 → Product | "100% code do AI viết"
+            <h2 class="slide-title animate-fade-up" style="font-size: clamp(20px, 3vw, 36px);">
+                DEMO: VIDEO GIỚI THIỆU SẢN PHẨM
+            </h2>
+            <p class="slide-subtitle animate-fade-up delay-1">
+                Dùng Agent Skill để tạo video giới thiệu sản phẩm
             </p>
-            <div class="chart-container animate-fade-up delay-2">
-                <canvas id="claudekitChart"></canvas>
+            <div class="animate-fade-up delay-2" style="max-width: 900px; border: var(--border-thick); box-shadow: var(--shadow-brutal); background: var(--color-black);">
+                <video autoplay loop muted playsinline style="width: 100%; display: block;">
+                    <source src="assets/records/agent-skills-intro.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
-            <div class="cards-row animate-fade-up delay-3" style="margin-top: var(--space-md);">
-                <div class="brutal-card" style="min-width: 150px;">
-                    <div style="font-size: 32px; font-weight: 700; color: var(--color-red);">0</div>
-                    <div style="font-size: 14px;">Starting from scratch</div>
-                </div>
-                <div class="brutal-card" style="min-width: 150px;">
-                    <div style="font-size: 32px; font-weight: 700; color: var(--color-blue);">100%</div>
-                    <div style="font-size: 14px;">AI-written code</div>
-                </div>
-                <div class="brutal-card" style="min-width: 150px; background: var(--color-black); color: white;">
-                    <div style="font-size: 32px; font-weight: 700; color: var(--color-yellow);">21K</div>
-                    <div style="font-size: 14px;">Followers earned</div>
-                </div>
-            </div>
+            <p class="mono animate-fade-up delay-3" style="margin-top: var(--space-sm); font-size: 14px;">
+                Tools: Claude Code + Video Storyboard Skill
+            </p>
         </div>
 
         <!--
         =====================================================
-        SLIDE 18: 3 ACTIONS
+        SLIDE 18: AGENT BROWSER
         =====================================================
         -->
         <div class="slide dark" id="slide-18">
             <span class="slide-number">18</span>
+            <h2 class="slide-title animate-fade-up" style="font-size: clamp(24px, 3.5vw, 40px); margin-bottom: var(--space-xs);">
+                AGENT BROWSER
+            </h2>
+            <p class="slide-subtitle animate-fade-up delay-1" style="font-size: clamp(16px, 2vw, 22px); margin-bottom: var(--space-sm);">
+                Đáng sợ như thế nào? 😱
+            </p>
+            <!-- Main content: 2-column layout -->
+            <div class="animate-fade-up delay-2" style="display: flex; gap: var(--space-md); max-width: 1100px; align-items: stretch;">
+                <!-- Left column: 3 cards stacked -->
+                <div style="display: flex; flex-direction: column; gap: var(--space-xs); flex: 0 0 280px;">
+                    <div class="brutal-card red" style="padding: 12px; flex: 1;">
+                        <h4 style="margin-bottom: 4px; font-size: 15px;">Lúc trước</h4>
+                        <p style="font-size: 13px;">Vấp phải rào cản Recaptcha & Authentication</p>
+                        <p style="font-size: 13px; margin-top: 4px;">→ Khó lấy được dữ liệu website</p>
+                    </div>
+                    <div class="brutal-card yellow" style="color: var(--color-black); padding: 12px; flex: 1;">
+                        <h4 style="margin-bottom: 4px; font-size: 15px;">Bây giờ</h4>
+                        <p style="font-size: 13px;">Agent Browser hoạt động như <strong>người bình thường</strong></p>
+                        <p style="font-size: 13px; margin-top: 4px;">→ Hệ thống <strong>không detect</strong> được</p>
+                    </div>
+                    <div class="brutal-card blue" style="padding: 12px; flex: 1;">
+                        <h4 style="margin-bottom: 4px; font-size: 15px;">Bonus</h4>
+                        <p style="font-size: 13px;">Sử dụng browser hiện tại của bạn</p>
+                        <p style="font-size: 13px; margin-top: 4px;">→ Dùng được thông tin đăng nhập sẵn có</p>
+                    </div>
+                </div>
+                <!-- Right column: 2 demo images -->
+                <div style="display: flex; gap: var(--space-sm); flex: 1;">
+                    <div style="border: var(--border-thick); box-shadow: var(--shadow-brutal); display: flex; flex-direction: column; flex: 1;">
+                        <div style="flex: 1; overflow: hidden;">
+                            <img src="assets/ai-chrome-sheets.jpg" alt="Claude Chrome Extension - Google Sheets" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        </div>
+                        <div style="background: var(--color-black); color: var(--color-yellow); padding: 6px; text-align: center; font-family: var(--font-mono); font-size: 11px;">CRAWL → GOOGLE SHEETS</div>
+                    </div>
+                    <div style="border: var(--border-thick); box-shadow: var(--shadow-brutal); display: flex; flex-direction: column; flex: 1;">
+                        <div style="flex: 1; overflow: hidden;">
+                            <img src="assets/ai-chrome-maps.png" alt="Claude Chrome Extension - Maps" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        </div>
+                        <div style="background: var(--color-black); color: var(--color-yellow); padding: 6px; text-align: center; font-family: var(--font-mono); font-size: 11px;">CLAUDE CHROME EXT</div>
+                    </div>
+                </div>
+            </div>
+            <p class="mono animate-fade-up delay-3" style="margin-top: var(--space-sm); font-size: 13px; color: rgba(255,255,255,0.7);">
+                💡 Tip: Bạn cũng có thể dùng Chrome Extension này trong công cụ Antigravity của Google
+            </p>
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 19: CLAUDEKIT STORY
+        =====================================================
+        -->
+        <div class="slide yellow" id="slide-19">
+            <span class="slide-number">19</span>
+            <h2 class="slide-title animate-fade-up" style="font-size: clamp(28px, 4vw, 48px); margin-bottom: var(--space-xs);">CLAUDEKIT STORY</h2>
+            <p class="slide-subtitle animate-fade-up delay-1" style="color: var(--color-black); margin-bottom: var(--space-sm);">
+                1 phút "quảng cáo" 😄
+            </p>
+            <div class="brutal-card animate-fade-up delay-2" style="max-width: 800px; text-align: left; padding: var(--space-sm);">
+                <ul class="brutal-list" style="margin: 0;">
+                    <li style="font-size: 16px; padding: 10px;">Phát triển trong <strong>2 tuần</strong> (tổng hợp kiến thức & kinh nghiệm 7 tháng dùng Claude Code)</li>
+                    <li style="font-size: 16px; padding: 10px;">Từ <strong>0 → 3,000 users</strong> khắp <span class="highlight-blue">109 quốc gia</span> trong 1.5 tháng</li>
+                    <li style="font-size: 16px; padding: 10px;">Bao gồm 2 bộ công cụ: <strong>"Engineer Kit"</strong> & <strong>"Marketing Kit"</strong></li>
+                    <li style="font-size: 16px; padding: 10px;">Mỗi bộ $99 - <span class="highlight-red">"1 lần chạm là 1 đời update"</span></li>
+                </ul>
+            </div>
+            <div class="cards-row animate-fade-up delay-3" style="margin-top: var(--space-sm); gap: var(--space-sm);">
+                <div class="brutal-card" style="min-width: 160px; padding: var(--space-sm);">
+                    <div style="font-size: 28px; font-weight: 700; color: var(--color-red);">3K+</div>
+                    <div style="font-size: 13px;">Users worldwide</div>
+                </div>
+                <div class="brutal-card" style="min-width: 160px; padding: var(--space-sm);">
+                    <div style="font-size: 28px; font-weight: 700; color: var(--color-blue);">109</div>
+                    <div style="font-size: 13px;">Countries</div>
+                </div>
+                <div class="brutal-card" style="min-width: 160px; padding: var(--space-sm); background: var(--color-black); color: white;">
+                    <div style="font-size: 28px; font-weight: 700; color: var(--color-yellow);">$99</div>
+                    <div style="font-size: 13px;">Lifetime access</div>
+                </div>
+            </div>
+            <p class="mono animate-fade-up delay-4" style="margin-top: var(--space-xs); font-size: 13px;">
+                Tất cả Agent Skills ở các slides trước đều nằm trong 2 bộ kit này!
+            </p>
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 20: 3 ACTIONS
+        =====================================================
+        -->
+        <div class="slide dark" id="slide-20">
+            <span class="slide-number">20</span>
             <h2 class="slide-title animate-fade-up">3 ACTIONS<br>LÀM NGAY HÔM NAY</h2>
             <div class="steps animate-fade-up delay-1" style="margin-top: var(--space-md);">
-                <div class="step" style="background: var(--color-yellow);">
+                <div class="step" style="background: var(--color-yellow); color: var(--color-black);">
                     <div class="step-number" style="color: var(--color-black);">1</div>
-                    <div class="step-title">Chọn 1 internal tool</div>
-                    <div class="step-desc">Content calendar, data tracker, task manager...</div>
+                    <div class="step-title" style="color: var(--color-black);">Chọn 1 internal tool</div>
+                    <div class="step-desc" style="color: var(--color-text-muted);">Content calendar, data tracker, task manager...</div>
                 </div>
                 <div class="step" style="background: var(--color-red); color: white;">
                     <div class="step-number" style="color: var(--color-yellow);">2</div>
@@ -1125,71 +1239,54 @@
                     <div class="step-desc">Don't wait. Just start.</div>
                 </div>
             </div>
-            <p class="mono animate-fade-up delay-2" style="margin-top: var(--space-lg); font-size: 18px; color: rgba(255,255,255,0.7);">
-                "Không khi nào là trễ hết, cái quan trọng là phải kiên trì thôi"
-            </p>
-        </div>
-
-        <!--
-        =====================================================
-        SLIDE 19: MINDSET
-        =====================================================
-        -->
-        <div class="slide" id="slide-19">
-            <span class="slide-number">19</span>
-            <h2 class="slide-title brutal animate-fade-up">
-                COMMUNITY &gt;<br>COMPETITION
-            </h2>
-            <div class="quote animate-fade-up delay-1" style="margin-top: var(--space-md);">
-                "I don't want to compete with anyone.<br>I hope we all make it."
+            <div class="brutal-card animate-fade-up delay-2" style="margin-top: var(--space-lg); max-width: 700px; background: rgba(255,255,255,0.1); text-align: left;">
+                <p style="font-size: 18px; color: white; line-height: 1.6;">
+                    "Có vài bạn marketer bị <span class="highlight-yellow" style="color: black;">FOMO</span> tìm tới CK nhưng không biết sử dụng Claude Code, bây giờ đã thành thạo và bị <strong style="color: var(--color-yellow);">"nghẹo"</strong> luôn rồi.<br><br>
+                    <span style="font-size: 24px; font-weight: 700;">Bất kỳ ai cũng có thể làm được!</span>"
+                </p>
             </div>
-            <p class="slide-text animate-fade-up delay-2" style="margin-top: var(--space-md);">
-                Thị trường ngoài kia lớn lắm.<br>
-                Nếu biết cách đi cùng nhau, cơ hội thành công sẽ nhiều hơn.
+            <p class="mono animate-fade-up delay-3" style="margin-top: var(--space-sm); font-size: 12px; color: rgba(255,255,255,0.5);">
+                ("nghẹo" = "ghiền")
             </p>
-            <!--
-            NANO BANANA PROMPT (Slide 19):
-            Technical blueprint illustration of community collaboration. Multiple people standing together on interconnected platforms, helping each other climb up. Hands reaching out to help. Isometric view. Style: Neobrutalism with bold black outlines 4px, yellow #FFEB3B for people/highlights, blue #2196F3 for platforms, warm atmosphere. Wireframe aesthetic. NEVER include text. Aspect ratio 16:9.
-            -->
         </div>
 
         <!--
         =====================================================
-        SLIDE 20: CTA
+        SLIDE 21: CTA
         =====================================================
         -->
-        <div class="slide yellow" id="slide-20">
-            <span class="slide-number">20</span>
+        <div class="slide yellow" id="slide-21">
+            <span class="slide-number">21</span>
             <h2 class="slide-title animate-fade-up" style="font-size: clamp(28px, 4vw, 56px);">
                 LET'S CONNECT
             </h2>
             <div class="cards-row animate-fade-up delay-1" style="margin-top: var(--space-md);">
-                <div class="brutal-card" style="min-width: 250px;">
+                <div class="brutal-card" style="min-width: 280px;">
                     <h4 style="margin-bottom: 8px;">Duy Nguyen</h4>
-                    <p style="font-size: 14px;">fb.com/mrgoonie</p>
-                    <p style="font-size: 14px;">goonnguyen.substack.com</p>
+                    <p style="font-size: 14px;"><a href="https://fb.com/mrgoonie" target="_blank" style="color: inherit; text-decoration: underline;">fb.com/mrgoonie</a></p>
+                    <p style="font-size: 14px;"><a href="https://goonnguyen.substack.com" target="_blank" style="color: inherit; text-decoration: underline;">goonnguyen.substack.com</a></p>
+                    <p style="font-size: 14px; margin-top: 8px;"><strong>X:</strong> <a href="https://x.com/goon_nguyen" target="_blank" style="color: inherit; text-decoration: underline;">@goon_nguyen</a></p>
                 </div>
-                <div class="brutal-card blue" style="min-width: 250px;">
-                    <h4 style="margin-bottom: 8px;">TOP Group</h4>
-                    <p style="font-size: 14px;">topgroup.vn</p>
-                </div>
-                <div class="brutal-card" style="min-width: 250px; background: var(--color-black); color: white;">
-                    <h4 style="margin-bottom: 8px; color: var(--color-yellow);">ClaudeKit</h4>
-                    <p style="font-size: 14px;">claudekit.com</p>
+                <div class="brutal-card blue" style="min-width: 280px;">
+                    <h4 style="margin-bottom: 8px;">Websites</h4>
+                    <p style="font-size: 14px;"><a href="https://wearetopgroup.com" target="_blank" style="color: inherit; text-decoration: underline;">wearetopgroup.com</a></p>
+                    <p style="font-size: 14px;"><a href="https://xinchao.world" target="_blank" style="color: inherit; text-decoration: underline;">xinchao.world</a></p>
+                    <p style="font-size: 14px;"><a href="https://claudekit.cc" target="_blank" style="color: inherit; text-decoration: underline;">claudekit.cc</a></p>
+                    <p style="font-size: 14px;"><a href="https://bip.vn" target="_blank" style="color: inherit; text-decoration: underline;">BiP.vn</a></p>
                 </div>
             </div>
-            <a href="#" class="cta-button animate-fade-up delay-2" style="margin-top: var(--space-lg);">
+            <a href="https://claudekit.cc" class="cta-button animate-fade-up delay-2" style="margin-top: var(--space-lg);">
                 FOLLOW FOR MORE
             </a>
         </div>
 
         <!--
         =====================================================
-        SLIDE 21: Q&A
+        SLIDE 22: Q&A
         =====================================================
         -->
-        <div class="slide dark" id="slide-21">
-            <span class="slide-number">21</span>
+        <div class="slide dark" id="slide-22">
+            <span class="slide-number">22</span>
             <h1 class="slide-title brutal animate-fade-up" style="font-size: clamp(48px, 8vw, 120px);">
                 Q&A
             </h1>
@@ -1199,6 +1296,9 @@
             <p class="mono animate-fade-up delay-2" style="margin-top: var(--space-lg); font-size: 18px; color: rgba(255,255,255,0.5);">
                 Cảm ơn các bạn đã lắng nghe!
             </p>
+            <p class="mono animate-fade-up delay-3" style="margin-top: var(--space-md); font-size: 16px; color: var(--color-yellow);">
+                🤫 Plot twist: toàn bộ bài trình bày này được tạo bởi AI - Claude Code
+            </p>
         </div>
 
     </div>
@@ -1206,7 +1306,7 @@
     <!-- Navigation Controls -->
     <div class="nav-controls">
         <button class="nav-btn" onclick="prevSlide()">←</button>
-        <span class="slide-counter"><span id="current">1</span> / <span id="total">21</span></span>
+        <span class="slide-counter"><span id="current">1</span> / <span id="total">19</span></span>
         <button class="nav-btn" onclick="nextSlide()">→</button>
     </div>
 
@@ -1218,7 +1318,7 @@
         const total = document.querySelectorAll('.slide').length;
         document.getElementById('total').textContent = total;
 
-        function showSlide(n) {
+        function showSlide(n, updateUrl = true) {
             if (n < 1) n = 1;
             if (n > total) n = total;
             current = n;
@@ -1227,10 +1327,30 @@
             });
             document.getElementById('current').textContent = n;
             document.getElementById('progressBar').style.width = (n / total * 100) + '%';
+
+            // Update URL with slide number
+            if (updateUrl) {
+                const url = new URL(window.location);
+                url.searchParams.set('slide', n);
+                window.history.replaceState({}, '', url);
+            }
         }
 
         function nextSlide() { showSlide(current + 1); }
         function prevSlide() { showSlide(current - 1); }
+
+        // Get initial slide from URL query parameter
+        function getInitialSlide() {
+            const params = new URLSearchParams(window.location.search);
+            const slideParam = params.get('slide');
+            if (slideParam) {
+                const slideNum = parseInt(slideParam, 10);
+                if (!isNaN(slideNum) && slideNum >= 1 && slideNum <= total) {
+                    return slideNum;
+                }
+            }
+            return 1;
+        }
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
@@ -1275,57 +1395,8 @@
             }
         });
 
-        showSlide(1);
-
-        // =====================================================
-        // CLAUDEKIT GROWTH CHART (Slide 17)
-        // =====================================================
-        const claudekitCtx = document.getElementById('claudekitChart');
-        if (claudekitCtx) {
-            new Chart(claudekitCtx, {
-                type: 'line',
-                data: {
-                    labels: ['Start', 'Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'Month 6'],
-                    datasets: [{
-                        label: 'Followers',
-                        data: [900, 2500, 5000, 8000, 12000, 17000, 21000],
-                        borderColor: '#FF5252',
-                        backgroundColor: 'rgba(255, 82, 82, 0.1)',
-                        borderWidth: 4,
-                        fill: true,
-                        tension: 0.4,
-                        pointBackgroundColor: '#FFEB3B',
-                        pointBorderColor: '#000',
-                        pointBorderWidth: 2,
-                        pointRadius: 6
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false }
-                    },
-                    scales: {
-                        x: {
-                            grid: { color: 'rgba(0,0,0,0.1)' },
-                            ticks: {
-                                color: '#000',
-                                font: { family: 'Space Grotesk', weight: 600 }
-                            }
-                        },
-                        y: {
-                            grid: { color: 'rgba(0,0,0,0.1)' },
-                            ticks: {
-                                color: '#000',
-                                font: { family: 'Space Grotesk', weight: 600 },
-                                callback: (value) => value >= 1000 ? (value/1000) + 'K' : value
-                            }
-                        }
-                    }
-                }
-            });
-        }
+        // Initialize with slide from URL or default to 1
+        showSlide(getInitialSlide(), true);
     </script>
 
     <!--
