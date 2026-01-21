@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Góc Nhìn AI Năm 2026 - Duy Nguyen | AI Workforce Workshop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <style>
+        /*
+        =====================================================
+        NEOBRUTALISM DESIGN TOKENS
+        =====================================================
+        */
+        :root {
+            /* Primary Colors */
+            --color-yellow: #FFEB3B;
+            --color-red: #FF5252;
+            --color-blue: #2196F3;
+            --color-black: #000000;
+            --color-white: #FFFFFF;
+            --color-cream: #FFFDF7;
+
+            /* Background */
+            --color-background: #FFFDF7;
+            --color-background-dark: #1A1A2E;
+            --color-background-alt: #F5F5DC;
+
+            /* Text */
+            --color-text-primary: #000000;
+            --color-text-secondary: #333333;
+            --color-text-muted: #666666;
+
+            /* Accent Gradients */
+            --gradient-yellow: linear-gradient(135deg, #FFEB3B 0%, #FFC107 100%);
+            --gradient-red: linear-gradient(135deg, #FF5252 0%, #D32F2F 100%);
+            --gradient-blue: linear-gradient(135deg, #2196F3 0%, #1565C0 100%);
+
+            /* Neobrutalism Effects */
+            --border-thick: 4px solid var(--color-black);
+            --border-medium: 3px solid var(--color-black);
+            --shadow-brutal: 6px 6px 0 var(--color-black);
+            --shadow-brutal-sm: 4px 4px 0 var(--color-black);
+            --shadow-brutal-lg: 8px 8px 0 var(--color-black);
+
+            /* Typography */
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-body: 'Space Grotesk', sans-serif;
+
+            /* Spacing */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 48px;
+            --space-xl: 64px;
+        }
+
+        /*
+        =====================================================
+        RESET & BASE
+        =====================================================
+        */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: var(--font-body);
+            background: var(--color-background);
+        }
+
+        /*
+        =====================================================
+        SLIDE CONTAINER
+        =====================================================
+        */
+        .slides-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: var(--space-xl);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            background: var(--color-background);
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .slide.dark {
+            background: var(--color-background-dark);
+            color: var(--color-white);
+        }
+
+        .slide.yellow {
+            background: var(--color-yellow);
+        }
+
+        .slide.red {
+            background: var(--color-red);
+            color: var(--color-white);
+        }
+
+        .slide.blue {
+            background: var(--color-blue);
+            color: var(--color-white);
+        }
+
+        /*
+        =====================================================
+        TYPOGRAPHY
+        =====================================================
+        */
+        .slide-number {
+            position: absolute;
+            top: var(--space-md);
+            left: var(--space-md);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 700;
+            padding: 8px 16px;
+            background: var(--color-black);
+            color: var(--color-yellow);
+            border: var(--border-medium);
+        }
+
+        .slide-title {
+            font-family: var(--font-heading);
+            font-size: clamp(36px, 6vw, 72px);
+            font-weight: 700;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: var(--space-md);
+        }
+
+        .slide-title.brutal {
+            background: var(--color-yellow);
+            padding: var(--space-sm) var(--space-md);
+            border: var(--border-thick);
+            box-shadow: var(--shadow-brutal);
+            display: inline-block;
+        }
+
+        .slide-subtitle {
+            font-family: var(--font-heading);
+            font-size: clamp(20px, 3vw, 32px);
+            font-weight: 500;
+            margin-bottom: var(--space-lg);
+            color: var(--color-text-secondary);
+        }
+
+        .dark .slide-subtitle {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .slide-text {
+            font-size: clamp(18px, 2.5vw, 28px);
+            line-height: 1.6;
+            max-width: 900px;
+        }
+
+        .quote {
+            font-family: var(--font-heading);
+            font-size: clamp(24px, 4vw, 48px);
+            font-weight: 700;
+            font-style: italic;
+            padding: var(--space-md);
+            border-left: 8px solid var(--color-yellow);
+            background: rgba(0,0,0,0.03);
+            text-align: left;
+            max-width: 800px;
+        }
+
+        .dark .quote {
+            background: rgba(255,255,255,0.05);
+            border-left-color: var(--color-yellow);
+        }
+
+        .mono {
+            font-family: var(--font-mono);
+        }
+
+        .highlight-yellow {
+            background: var(--color-yellow);
+            padding: 4px 12px;
+            border: 2px solid var(--color-black);
+        }
+
+        .highlight-red {
+            background: var(--color-red);
+            color: var(--color-white);
+            padding: 4px 12px;
+            border: 2px solid var(--color-black);
+        }
+
+        .highlight-blue {
+            background: var(--color-blue);
+            color: var(--color-white);
+            padding: 4px 12px;
+            border: 2px solid var(--color-black);
+        }
+
+        /*
+        =====================================================
+        CARDS & BOXES (Neobrutalism)
+        =====================================================
+        */
+        .brutal-card {
+            background: var(--color-white);
+            border: var(--border-thick);
+            box-shadow: var(--shadow-brutal);
+            padding: var(--space-md);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .brutal-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0 var(--color-black);
+        }
+
+        .brutal-card.yellow {
+            background: var(--color-yellow);
+        }
+
+        .brutal-card.red {
+            background: var(--color-red);
+            color: var(--color-white);
+        }
+
+        .brutal-card.blue {
+            background: var(--color-blue);
+            color: var(--color-white);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-md);
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .cards-row {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /*
+        =====================================================
+        KEYWORDS / TAGS
+        =====================================================
+        */
+        .keywords {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: var(--space-md) 0;
+        }
+
+        .keyword {
+            font-family: var(--font-mono);
+            font-size: 18px;
+            font-weight: 700;
+            padding: 12px 24px;
+            border: var(--border-medium);
+            box-shadow: var(--shadow-brutal-sm);
+            text-transform: uppercase;
+        }
+
+        .keyword.yellow { background: var(--color-yellow); }
+        .keyword.red { background: var(--color-red); color: white; }
+        .keyword.blue { background: var(--color-blue); color: white; }
+
+        /*
+        =====================================================
+        LISTS
+        =====================================================
+        */
+        .brutal-list {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .brutal-list li {
+            font-size: clamp(18px, 2.2vw, 24px);
+            padding: var(--space-sm);
+            margin-bottom: var(--space-sm);
+            border-left: 6px solid var(--color-yellow);
+            background: rgba(0,0,0,0.02);
+            list-style: none;
+        }
+
+        .dark .brutal-list li {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .brutal-list li strong {
+            color: var(--color-red);
+        }
+
+        .dark .brutal-list li strong {
+            color: var(--color-yellow);
+        }
+
+        /*
+        =====================================================
+        CHARTS
+        =====================================================
+        */
+        .chart-container {
+            width: 100%;
+            max-width: 700px;
+            height: 350px;
+            padding: var(--space-md);
+            background: var(--color-white);
+            border: var(--border-thick);
+            box-shadow: var(--shadow-brutal);
+        }
+
+        /*
+        =====================================================
+        IMAGES & PLACEHOLDERS
+        =====================================================
+        */
+        .image-placeholder {
+            width: 100%;
+            max-width: 600px;
+            aspect-ratio: 16/9;
+            background: repeating-linear-gradient(
+                45deg,
+                var(--color-background-alt),
+                var(--color-background-alt) 10px,
+                var(--color-cream) 10px,
+                var(--color-cream) 20px
+            );
+            border: var(--border-thick);
+            box-shadow: var(--shadow-brutal);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--color-text-muted);
+            padding: var(--space-md);
+        }
+
+        .image-placeholder .label {
+            background: var(--color-black);
+            color: var(--color-yellow);
+            padding: 8px 16px;
+            margin-bottom: var(--space-sm);
+            font-weight: 700;
+        }
+
+        /*
+        =====================================================
+        SPEAKER INFO
+        =====================================================
+        */
+        .speaker-info {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+
+        .speaker-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 0;
+            border: var(--border-medium);
+            box-shadow: var(--shadow-brutal-sm);
+            background: var(--color-yellow);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .speaker-details {
+            text-align: left;
+        }
+
+        .speaker-name {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .speaker-title {
+            font-size: 16px;
+            color: var(--color-text-muted);
+        }
+
+        .dark .speaker-title {
+            color: rgba(255,255,255,0.7);
+        }
+
+        /*
+        =====================================================
+        VS COMPARISON
+        =====================================================
+        */
+        .vs-container {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .vs-item {
+            font-family: var(--font-heading);
+            font-size: clamp(24px, 4vw, 48px);
+            font-weight: 700;
+            padding: var(--space-sm) var(--space-md);
+            border: var(--border-thick);
+            box-shadow: var(--shadow-brutal);
+        }
+
+        .vs-divider {
+            font-size: clamp(32px, 5vw, 64px);
+            font-weight: 900;
+            color: var(--color-red);
+        }
+
+        /*
+        =====================================================
+        TIMELINE / STEPS
+        =====================================================
+        */
+        .steps {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1100px;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+            padding: var(--space-md);
+            border: var(--border-thick);
+            box-shadow: var(--shadow-brutal);
+            background: var(--color-white);
+        }
+
+        .step-number {
+            font-family: var(--font-mono);
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--color-red);
+            margin-bottom: var(--space-sm);
+        }
+
+        .step-title {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+        }
+
+        .step-desc {
+            font-size: 14px;
+            color: var(--color-text-muted);
+        }
+
+        /*
+        =====================================================
+        CTA BUTTON
+        =====================================================
+        */
+        .cta-button {
+            display: inline-block;
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: var(--space-sm) var(--space-lg);
+            background: var(--color-yellow);
+            color: var(--color-black);
+            border: var(--border-thick);
+            box-shadow: var(--shadow-brutal);
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0 var(--color-black);
+        }
+
+        /*
+        =====================================================
+        NAVIGATION
+        =====================================================
+        */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 6px;
+            background: var(--color-yellow);
+            border-bottom: 2px solid var(--color-black);
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+
+        .nav-controls {
+            position: fixed;
+            bottom: var(--space-md);
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-xs) var(--space-sm);
+            background: var(--color-black);
+            border: var(--border-medium);
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            width: 48px;
+            height: 48px;
+            font-size: 20px;
+            font-weight: 700;
+            background: var(--color-yellow);
+            color: var(--color-black);
+            border: 2px solid var(--color-black);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: var(--color-white);
+        }
+
+        .slide-counter {
+            font-family: var(--font-mono);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--color-yellow);
+            padding: 0 var(--space-sm);
+        }
+
+        /*
+        =====================================================
+        ANIMATIONS
+        =====================================================
+        */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .slide.active .animate-fade-up {
+            animation: fadeUp 0.6s ease forwards;
+        }
+
+        .slide.active .animate-slide-in {
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+        /*
+        =====================================================
+        RESPONSIVE
+        =====================================================
+        */
+        @media (max-width: 768px) {
+            .slide {
+                padding: var(--space-md);
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .vs-container {
+                flex-direction: column;
+            }
+
+            .steps {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="slides-container">
+
+        <!--
+        =====================================================
+        SLIDE 1: TITLE
+        =====================================================
+        -->
+        <div class="slide dark active" id="slide-1">
+            <span class="slide-number">01</span>
+            <h1 class="slide-title brutal animate-fade-up">
+                GÓC NHÌN AI<br>NĂM 2026
+            </h1>
+            <p class="slide-subtitle animate-fade-up delay-1">
+                Xu hướng AI doanh nghiệp cần đón đầu<br>
+                Ứng dụng AI trong Marketing để tăng trưởng thực tế
+            </p>
+            <div class="speaker-info animate-fade-up delay-2">
+                <div class="speaker-avatar">DN</div>
+                <div class="speaker-details">
+                    <div class="speaker-name">Duy Nguyen</div>
+                    <div class="speaker-title">CTO, TOP Group | Creator of ClaudeKit</div>
+                </div>
+            </div>
+            <p class="mono animate-fade-up delay-3" style="margin-top: var(--space-md); font-size: 14px; color: rgba(255,255,255,0.5);">
+                AI Workforce 2026 Workshop
+            </p>
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 2: HOOK
+        =====================================================
+        -->
+        <div class="slide yellow" id="slide-2">
+            <span class="slide-number">02</span>
+            <div class="quote animate-fade-up">
+                "2025 vả cho không trượt phát nào"
+            </div>
+            <p class="slide-text animate-fade-up delay-1" style="margin-top: var(--space-lg);">
+                Nhưng nếu số phận đã an bài cho mình phải luôn lần mò và mài giũa,<br>
+                thì thôi mình chọn tận hưởng hành trình này vậy.
+            </p>
+            <p class="animate-fade-up delay-2" style="margin-top: var(--space-md); font-size: 32px; font-weight: 700;">
+                <span class="highlight-red">fck around & find out</span>
+            </p>
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 3: AI LANDSCAPE 2026
+        =====================================================
+        -->
+        <div class="slide dark" id="slide-3">
+            <span class="slide-number">03</span>
+            <h2 class="slide-title animate-fade-up">AI LANDSCAPE 2026</h2>
+            <p class="slide-subtitle animate-fade-up delay-1">3 xu hướng định hình tương lai</p>
+            <div class="keywords animate-fade-up delay-2">
+                <span class="keyword yellow">AGENTIC CODING</span>
+                <span class="keyword red">ON-THE-FLY SOFTWARE</span>
+                <span class="keyword blue">AI RACE</span>
+            </div>
+            <!--
+            NANO BANANA PROMPT (Slide 3):
+            Technical blueprint illustration of a futuristic AI landscape in 2026. Isometric view showing three interconnected platforms: (1) Agentic Coding - robots controlling code agents, (2) On-the-Fly Software - self-building software structures, (3) AI Race - abstract company towers competing. Style: Neobrutalism technical drawing with bold black outlines 4px, yellow #FFEB3B, red #FF5252, blue #2196F3 accent colors. Circuit board patterns in background. Wireframe aesthetic. NEVER include text or watermarks. Aspect ratio 16:9. Professional technical illustration.
+            -->
+            <div class="image-placeholder animate-fade-up delay-3">
+                <span class="label">ILLUSTRATION: AI LANDSCAPE</span>
+                <small>Generate with Nano Banana using prompt above</small>
+            </div>
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 4: AGENTIC VS VIBE CODING
+        =====================================================
+        -->
+        <div class="slide" id="slide-4">
+            <span class="slide-number">04</span>
+            <h2 class="slide-title animate-fade-up" style="font-size: clamp(28px, 4vw, 48px);">
+                "AGENTIC CODING" vs "VIBE CODING"
+            </h2>
+            <div class="vs-container animate-fade-up delay-1" style="margin: var(--space-lg) 0;">
+                <div class="vs-item" style="background: var(--color-yellow);">GENERALIST</div>
+                <span class="vs-divider">&gt;</span>
+                <div class="vs-item" style="background: var(--color-red); color: white;">SPECIALIST</div>
+            </div>
+            <ul class="brutal-list animate-fade-up delay-2">
+                <li><strong>Kiểm soát AI</strong>, không thả rông</li>
+                <li>Biết <strong>"lái"</strong> AI, không cần biết hết chi tiết</li>
+                <li>Quan sát agents → <strong>Học hỏi</strong> → Điều hướng</li>
+                <li><strong>Context Engineering</strong> - cho cả human & AI</li>
+            </ul>
+            <!--
+            NANO BANANA PROMPT (Slide 4):
+            Technical illustration of a human pilot in cockpit controlling multiple AI robot agents. Isometric blueprint style. The pilot has steering wheel and dashboard with metrics. 5-6 small robot agents are executing code tasks around. Style: Neobrutalism with bold black outlines 4px, yellow #FFEB3B highlights on dashboard, red #FF5252 on warning indicators, blue #2196F3 on robots. Wireframe and circuit patterns. NEVER include text. Aspect ratio 16:9.
+            -->
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 5: SOFTWARE ON-THE-FLY
+        =====================================================
+        -->
+        <div class="slide dark" id="slide-5">
+            <span class="slide-number">05</span>
+            <h2 class="slide-title animate-fade-up">PHẦN MỀM "ON THE FLY"</h2>
+            <div class="quote animate-fade-up delay-1" style="border-left-color: var(--color-blue);">
+                "100% code của Claude Code bây giờ do chính nó viết"
+                <br><small style="font-style: normal; font-size: 16px; opacity: 0.7;">— Boris, Creator of Claude Code</small>
+            </div>
+            <p class="slide-text animate-fade-up delay-2" style="margin-top: var(--space-lg);">
+                Software có thể <span class="highlight-yellow">tự phát triển chính mình</span><br>
+                hoặc <span class="highlight-blue">tự sinh ra phần mềm con</span> "on the fly"
+            </p>
+            <!--
+            NANO BANANA PROMPT (Slide 5):
+            Technical blueprint of self-evolving software concept. Central large cube/block generating smaller cubes automatically. Conveyor belt of code blocks being assembled. Robotic arms building software modules. Style: Neobrutalism isometric view, bold black outlines 4px, yellow #FFEB3B for main structure, blue #2196F3 for generated modules, red #FF5252 for energy/power indicators. Circuit board background pattern. Wireframe aesthetic. NEVER include text. Aspect ratio 16:9.
+            -->
+            <div class="image-placeholder animate-fade-up delay-3" style="max-width: 500px;">
+                <span class="label">ILLUSTRATION: SELF-BUILDING SOFTWARE</span>
+                <small>Generate with Nano Banana using prompt above</small>
+            </div>
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 6: AI RACE
+        =====================================================
+        -->
+        <div class="slide" id="slide-6">
+            <span class="slide-number">06</span>
+            <h2 class="slide-title animate-fade-up" style="font-size: clamp(24px, 3.5vw, 42px);">
+                AI RACE: AI SẼ VỀ ĐÂU?
+            </h2>
+            <div class="cards-grid animate-fade-up delay-1" style="margin-top: var(--space-md);">
+                <div class="brutal-card">
+                    <h3 style="font-size: 24px; margin-bottom: 8px;">OpenAI / ChatGPT</h3>
+                    <p style="color: var(--color-red); font-weight: 700;">Đang mất dần vị thế?</p>
+                    <p style="font-size: 14px; color: var(--color-text-muted); margin-top: 8px;">Lan man, thiếu focus</p>
+                </div>
+                <div class="brutal-card yellow">
+                    <h3 style="font-size: 24px; margin-bottom: 8px;">Google / Gemini</h3>
+                    <p style="color: var(--color-black); font-weight: 700;">Will Win</p>
+                    <p style="font-size: 14px; margin-top: 8px;">Unfair advantage: Hạ tầng + Hệ sinh thái</p>
+                </div>
+                <div class="brutal-card blue">
+                    <h3 style="font-size: 24px; margin-bottom: 8px;">Anthropic / Claude</h3>
+                    <p style="font-weight: 700;">Unbeatable in Coding</p>
+                    <p style="font-size: 14px; margin-top: 8px;">Dồn toàn lực cho niche</p>
+                </div>
+            </div>
+            <p class="mono animate-fade-up delay-2" style="margin-top: var(--space-md); font-size: 18px;">
+                <span class="highlight-yellow">Bet on Google.</span>
+            </p>
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 7: VIBE CODERS = OPPORTUNITY
+        =====================================================
+        -->
+        <div class="slide red" id="slide-7">
+            <span class="slide-number">07</span>
+            <h2 class="slide-title animate-fade-up" style="color: white;">
+                "VIBE CODERS"<br>= CƠ HỘI
+            </h2>
+            <div class="quote animate-fade-up delay-1" style="background: rgba(0,0,0,0.2); border-left-color: var(--color-yellow); color: white;">
+                "Họ đã / đang / sẽ đau"
+            </div>
+            <ul class="brutal-list animate-fade-up delay-2" style="margin-top: var(--space-md);">
+                <li style="background: rgba(0,0,0,0.2);">Không biết làm production-ready? <strong>Fix it.</strong></li>
+                <li style="background: rgba(0,0,0,0.2);">Không biết bảo mật? <strong>Fix it.</strong></li>
+                <li style="background: rgba(0,0,0,0.2);">Không biết deploy? <strong>Fix it.</strong></li>
+                <li style="background: rgba(0,0,0,0.2);">Không biết go-to-market? <strong>Fix it.</strong></li>
+            </ul>
+            <p class="animate-fade-up delay-3" style="margin-top: var(--space-md); font-size: 24px; font-weight: 700;">
+                Pain points của họ = <span class="highlight-yellow" style="color: black;">Cơ hội của bạn</span>
+            </p>
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 8: PHẦN MỀM CÁ NHÂN HOÁ - CONCEPT
+        =====================================================
+        -->
+        <div class="slide dark" id="slide-8">
+            <span class="slide-number">08</span>
+            <h2 class="slide-title animate-fade-up">
+                PHẦN MỀM<br>CÁ NHÂN HOÁ
+            </h2>
+            <p class="slide-subtitle animate-fade-up delay-1">
+                Build internal tools với <span class="highlight-yellow" style="color: black;">ZERO COST</span>
+            </p>
+            <div class="cards-row animate-fade-up delay-2">
+                <div class="brutal-card yellow" style="min-width: 200px;">
+                    <h4 style="font-size: 18px;">Mục tiêu</h4>
+                    <p style="font-size: 14px;">Tăng hiệu suất công việc</p>
+                </div>
+                <div class="brutal-card" style="min-width: 200px;">
+                    <h4 style="font-size: 18px;">Phạm vi</h4>
+                    <p style="font-size: 14px;">Sử dụng nội bộ</p>
+                </div>
+                <div class="brutal-card blue" style="min-width: 200px;">
+                    <h4 style="font-size: 18px;">Chi phí</h4>
+                    <p style="font-size: 14px;">$0 (AI làm hết)</p>
+                </div>
+            </div>
+            <!--
+            NANO BANANA PROMPT (Slide 8):
+            Technical blueprint of a person at desk building custom software tools with AI assistance. Isometric view. Person with laptop, multiple floating tool windows around: calendar, dashboard, charts. Small robot assistant helping. Style: Neobrutalism with bold black outlines 4px, yellow #FFEB3B for highlights, blue #2196F3 for tool windows, red #FF5252 for important elements. Wireframe aesthetic, circuit patterns. NEVER include text. Aspect ratio 16:9.
+            -->
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 9: DEMO - CONTENT CALENDAR
+        =====================================================
+        -->
+        <div class="slide" id="slide-9">
+            <span class="slide-number">09</span>
+            <h2 class="slide-title animate-fade-up" style="font-size: clamp(24px, 3.5vw, 40px);">
+                DEMO: CONTENT CALENDAR
+            </h2>
+            <p class="slide-subtitle animate-fade-up delay-1">
+                Tự build tool quản lý content pipeline
+            </p>
+            <div class="image-placeholder animate-fade-up delay-2">
+                <span class="label">SCREENSHOT: CONTENT CALENDAR TOOL</span>
+                <small>Replace with actual screenshot of your content calendar tool</small>
+            </div>
+            <p class="mono animate-fade-up delay-3" style="margin-top: var(--space-sm); font-size: 14px; color: var(--color-text-muted);">
+                Built with Claude Code in ~2 hours
+            </p>
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 10: DEMO - AI ARTIST → NANO BANANA
+        =====================================================
+        -->
+        <div class="slide yellow" id="slide-10">
+            <span class="slide-number">10</span>
+            <h2 class="slide-title animate-fade-up" style="font-size: clamp(24px, 3.5vw, 40px);">
+                DEMO: AI ARTIST WORKFLOW
+            </h2>
+            <p class="slide-subtitle animate-fade-up delay-1" style="color: var(--color-black);">
+                Claude → Structured Prompt → Gemini Nano Banana
+            </p>
+            <div class="steps animate-fade-up delay-2">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Describe ý tưởng</div>
+                    <div class="step-desc">Mô tả bằng tiếng Việt cho Claude</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">AI Artist Skill</div>
+                    <div class="step-desc">Claude generate structured prompt</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Nano Banana</div>
+                    <div class="step-desc">Paste prompt → Generate image</div>
+                </div>
+            </div>
+            <div class="image-placeholder animate-fade-up delay-3" style="margin-top: var(--space-md); max-width: 500px;">
+                <span class="label">OUTPUT: GENERATED IMAGE</span>
+                <small>Show actual Nano Banana output here</small>
+            </div>
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 11: DEMO - VIDEO QUẢNG CÁO
+        =====================================================
+        -->
+        <div class="slide dark" id="slide-11">
+            <span class="slide-number">11</span>
+            <h2 class="slide-title animate-fade-up" style="font-size: clamp(24px, 3.5vw, 40px);">
+                DEMO: VIDEO QUẢNG CÁO
+            </h2>
+            <p class="slide-subtitle animate-fade-up delay-1">
+                Claude Code → Script → Storyboard → Video
+            </p>
+            <div class="image-placeholder animate-fade-up delay-2" style="aspect-ratio: 16/9; max-width: 700px;">
+                <span class="label">VIDEO: CLAUDE CODE SESSION</span>
+                <small>Embed pre-recorded video here</small>
+                <small style="margin-top: 8px;">Showing: Script generation + Storyboard creation</small>
+            </div>
+            <p class="mono animate-fade-up delay-3" style="margin-top: var(--space-sm); font-size: 14px;">
+                Tools: Claude Code + Veo 3 / Runway / Kling
+            </p>
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 12: WHY INTERNAL FIRST
+        =====================================================
+        -->
+        <div class="slide" id="slide-12">
+            <span class="slide-number">12</span>
+            <h2 class="slide-title animate-fade-up">
+                TẠI SAO<br>"NỘI BỘ TRƯỚC"?
+            </h2>
+            <div class="brutal-card yellow animate-fade-up delay-1" style="max-width: 700px; margin-top: var(--space-md);">
+                <h3 style="font-size: 28px; margin-bottom: var(--space-sm);">Nội bộ = Sandbox An Toàn</h3>
+                <ul style="text-align: left; font-size: 18px; line-height: 2;">
+                    <li>Thử nghiệm thoải mái, không sợ lỗi</li>
+                    <li>Học cách "lái" AI qua thực hành</li>
+                    <li>Build up context & workflow trước khi production</li>
+                    <li>Không áp lực deadline khách hàng</li>
+                </ul>
+            </div>
+            <p class="animate-fade-up delay-2" style="margin-top: var(--space-md); font-size: 20px;">
+                <span class="highlight-blue">Practice makes perfect.</span>
+            </p>
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 13: AI TRONG MARKETING - OVERVIEW
+        =====================================================
+        -->
+        <div class="slide blue" id="slide-13">
+            <span class="slide-number">13</span>
+            <h2 class="slide-title animate-fade-up" style="color: white;">
+                AI TRONG<br>MARKETING
+            </h2>
+            <div class="keywords animate-fade-up delay-1">
+                <span class="keyword" style="background: white; color: var(--color-blue);">SLIDES</span>
+                <span class="keyword" style="background: white; color: var(--color-blue);">BANNERS</span>
+                <span class="keyword" style="background: white; color: var(--color-blue);">VIDEOS</span>
+                <span class="keyword" style="background: white; color: var(--color-blue);">ADS</span>
+                <span class="keyword" style="background: white; color: var(--color-blue);">RESEARCH</span>
+            </div>
+            <p class="slide-text animate-fade-up delay-2" style="margin-top: var(--space-md);">
+                Từ ý tưởng → Asset hoàn chỉnh<br>
+                <span style="font-size: 24px;">trong vài phút, không vài ngày</span>
+            </p>
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 14: DEMO - BANNER GENERATION
+        =====================================================
+        -->
+        <div class="slide" id="slide-14">
+            <span class="slide-number">14</span>
+            <h2 class="slide-title animate-fade-up" style="font-size: clamp(24px, 3.5vw, 40px);">
+                DEMO: BANNER GENERATION
+            </h2>
+            <p class="slide-subtitle animate-fade-up delay-1">
+                UI UX Pro Max Skill → Real Banner Output
+            </p>
+            <div class="cards-row animate-fade-up delay-2">
+                <div class="image-placeholder" style="max-width: 350px; aspect-ratio: 1/1;">
+                    <span class="label">INPUT: BRIEF</span>
+                    <small>"Banner cho Black Friday sale, neobrutalism style"</small>
+                </div>
+                <div style="font-size: 48px; display: flex; align-items: center;">→</div>
+                <div class="image-placeholder" style="max-width: 350px; aspect-ratio: 1/1;">
+                    <span class="label">OUTPUT: BANNER</span>
+                    <small>Replace with actual generated banner</small>
+                </div>
+            </div>
+            <p class="mono animate-fade-up delay-3" style="margin-top: var(--space-sm); font-size: 14px; color: var(--color-text-muted);">
+                Time: ~30 seconds | Cost: $0.02
+            </p>
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 15: MARKET RESEARCH
+        =====================================================
+        -->
+        <div class="slide dark" id="slide-15">
+            <span class="slide-number">15</span>
+            <h2 class="slide-title animate-fade-up" style="font-size: clamp(24px, 3.5vw, 40px);">
+                MARKET RESEARCH<br>VỚI AI
+            </h2>
+            <p class="slide-subtitle animate-fade-up delay-1">
+                Competitor Analysis trong vài phút
+            </p>
+            <div class="cards-grid animate-fade-up delay-2" style="max-width: 900px;">
+                <div class="brutal-card">
+                    <h4 style="margin-bottom: 8px;">Web Scraping</h4>
+                    <p style="font-size: 14px;">Tự động thu thập data từ competitors</p>
+                </div>
+                <div class="brutal-card yellow">
+                    <h4 style="margin-bottom: 8px;">Deep Research</h4>
+                    <p style="font-size: 14px;">AI tổng hợp & phân tích insights</p>
+                </div>
+                <div class="brutal-card blue">
+                    <h4 style="margin-bottom: 8px;">Report Generation</h4>
+                    <p style="font-size: 14px;">Xuất báo cáo tự động</p>
+                </div>
+            </div>
+            <div class="image-placeholder animate-fade-up delay-3" style="margin-top: var(--space-md); max-width: 600px;">
+                <span class="label">SCREENSHOT: RESEARCH OUTPUT</span>
+                <small>Show competitor analysis report here</small>
+            </div>
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 16: ANALYTICS INTEGRATION
+        =====================================================
+        -->
+        <div class="slide" id="slide-16">
+            <span class="slide-number">16</span>
+            <h2 class="slide-title animate-fade-up" style="font-size: clamp(24px, 3.5vw, 40px);">
+                ANALYTICS + AI
+            </h2>
+            <p class="slide-subtitle animate-fade-up delay-1">
+                Chrome Extensions + Claude Desktop / Antigravity
+            </p>
+            <div class="steps animate-fade-up delay-2">
+                <div class="step" style="background: var(--color-yellow);">
+                    <div class="step-number" style="color: var(--color-black);">GA</div>
+                    <div class="step-title">Google Analytics</div>
+                    <div class="step-desc">Traffic & behavior data</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">GT</div>
+                    <div class="step-title">Google Trends</div>
+                    <div class="step-desc">Search trends & seasonality</div>
+                </div>
+                <div class="step" style="background: var(--color-blue); color: white;">
+                    <div class="step-number" style="color: var(--color-yellow);">SC</div>
+                    <div class="step-title">Search Console</div>
+                    <div class="step-desc">SEO performance</div>
+                </div>
+            </div>
+            <p class="animate-fade-up delay-3" style="margin-top: var(--space-md); font-size: 18px;">
+                AI đọc data → <span class="highlight-yellow">Phân tích</span> → Đề xuất actions
+            </p>
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 17: CLAUDEKIT STORY
+        =====================================================
+        -->
+        <div class="slide yellow" id="slide-17">
+            <span class="slide-number">17</span>
+            <h2 class="slide-title animate-fade-up">CLAUDEKIT STORY</h2>
+            <p class="slide-subtitle animate-fade-up delay-1" style="color: var(--color-black);">
+                From 0 → Product | "100% code do AI viết"
+            </p>
+            <div class="chart-container animate-fade-up delay-2">
+                <canvas id="claudekitChart"></canvas>
+            </div>
+            <div class="cards-row animate-fade-up delay-3" style="margin-top: var(--space-md);">
+                <div class="brutal-card" style="min-width: 150px;">
+                    <div style="font-size: 32px; font-weight: 700; color: var(--color-red);">0</div>
+                    <div style="font-size: 14px;">Starting from scratch</div>
+                </div>
+                <div class="brutal-card" style="min-width: 150px;">
+                    <div style="font-size: 32px; font-weight: 700; color: var(--color-blue);">100%</div>
+                    <div style="font-size: 14px;">AI-written code</div>
+                </div>
+                <div class="brutal-card" style="min-width: 150px; background: var(--color-black); color: white;">
+                    <div style="font-size: 32px; font-weight: 700; color: var(--color-yellow);">21K</div>
+                    <div style="font-size: 14px;">Followers earned</div>
+                </div>
+            </div>
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 18: 3 ACTIONS
+        =====================================================
+        -->
+        <div class="slide dark" id="slide-18">
+            <span class="slide-number">18</span>
+            <h2 class="slide-title animate-fade-up">3 ACTIONS<br>LÀM NGAY HÔM NAY</h2>
+            <div class="steps animate-fade-up delay-1" style="margin-top: var(--space-md);">
+                <div class="step" style="background: var(--color-yellow);">
+                    <div class="step-number" style="color: var(--color-black);">1</div>
+                    <div class="step-title">Chọn 1 internal tool</div>
+                    <div class="step-desc">Content calendar, data tracker, task manager...</div>
+                </div>
+                <div class="step" style="background: var(--color-red); color: white;">
+                    <div class="step-number" style="color: var(--color-yellow);">2</div>
+                    <div class="step-title">Setup AI workflow</div>
+                    <div class="step-desc">Claude Code / Cursor / Windsurf</div>
+                </div>
+                <div class="step" style="background: var(--color-blue); color: white;">
+                    <div class="step-number" style="color: var(--color-yellow);">3</div>
+                    <div class="step-title">Bắt đầu NGAY</div>
+                    <div class="step-desc">Don't wait. Just start.</div>
+                </div>
+            </div>
+            <p class="mono animate-fade-up delay-2" style="margin-top: var(--space-lg); font-size: 18px; color: rgba(255,255,255,0.7);">
+                "Không khi nào là trễ hết, cái quan trọng là phải kiên trì thôi"
+            </p>
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 19: MINDSET
+        =====================================================
+        -->
+        <div class="slide" id="slide-19">
+            <span class="slide-number">19</span>
+            <h2 class="slide-title brutal animate-fade-up">
+                COMMUNITY &gt;<br>COMPETITION
+            </h2>
+            <div class="quote animate-fade-up delay-1" style="margin-top: var(--space-md);">
+                "I don't want to compete with anyone.<br>I hope we all make it."
+            </div>
+            <p class="slide-text animate-fade-up delay-2" style="margin-top: var(--space-md);">
+                Thị trường ngoài kia lớn lắm.<br>
+                Nếu biết cách đi cùng nhau, cơ hội thành công sẽ nhiều hơn.
+            </p>
+            <!--
+            NANO BANANA PROMPT (Slide 19):
+            Technical blueprint illustration of community collaboration. Multiple people standing together on interconnected platforms, helping each other climb up. Hands reaching out to help. Isometric view. Style: Neobrutalism with bold black outlines 4px, yellow #FFEB3B for people/highlights, blue #2196F3 for platforms, warm atmosphere. Wireframe aesthetic. NEVER include text. Aspect ratio 16:9.
+            -->
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 20: CTA
+        =====================================================
+        -->
+        <div class="slide yellow" id="slide-20">
+            <span class="slide-number">20</span>
+            <h2 class="slide-title animate-fade-up" style="font-size: clamp(28px, 4vw, 56px);">
+                LET'S CONNECT
+            </h2>
+            <div class="cards-row animate-fade-up delay-1" style="margin-top: var(--space-md);">
+                <div class="brutal-card" style="min-width: 250px;">
+                    <h4 style="margin-bottom: 8px;">Duy Nguyen</h4>
+                    <p style="font-size: 14px;">fb.com/mrgoonie</p>
+                    <p style="font-size: 14px;">goonnguyen.substack.com</p>
+                </div>
+                <div class="brutal-card blue" style="min-width: 250px;">
+                    <h4 style="margin-bottom: 8px;">TOP Group</h4>
+                    <p style="font-size: 14px;">topgroup.vn</p>
+                </div>
+                <div class="brutal-card" style="min-width: 250px; background: var(--color-black); color: white;">
+                    <h4 style="margin-bottom: 8px; color: var(--color-yellow);">ClaudeKit</h4>
+                    <p style="font-size: 14px;">claudekit.com</p>
+                </div>
+            </div>
+            <a href="#" class="cta-button animate-fade-up delay-2" style="margin-top: var(--space-lg);">
+                FOLLOW FOR MORE
+            </a>
+        </div>
+
+        <!--
+        =====================================================
+        SLIDE 21: Q&A
+        =====================================================
+        -->
+        <div class="slide dark" id="slide-21">
+            <span class="slide-number">21</span>
+            <h1 class="slide-title brutal animate-fade-up" style="font-size: clamp(48px, 8vw, 120px);">
+                Q&A
+            </h1>
+            <p class="slide-subtitle animate-fade-up delay-1">
+                Hỏi đáp & Thảo luận
+            </p>
+            <p class="mono animate-fade-up delay-2" style="margin-top: var(--space-lg); font-size: 18px; color: rgba(255,255,255,0.5);">
+                Cảm ơn các bạn đã lắng nghe!
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="nav-controls">
+        <button class="nav-btn" onclick="prevSlide()">←</button>
+        <span class="slide-counter"><span id="current">1</span> / <span id="total">21</span></span>
+        <button class="nav-btn" onclick="nextSlide()">→</button>
+    </div>
+
+    <script>
+        // =====================================================
+        // NAVIGATION
+        // =====================================================
+        let current = 1;
+        const total = document.querySelectorAll('.slide').length;
+        document.getElementById('total').textContent = total;
+
+        function showSlide(n) {
+            if (n < 1) n = 1;
+            if (n > total) n = total;
+            current = n;
+            document.querySelectorAll('.slide').forEach((s, i) => {
+                s.classList.toggle('active', i === n - 1);
+            });
+            document.getElementById('current').textContent = n;
+            document.getElementById('progressBar').style.width = (n / total * 100) + '%';
+        }
+
+        function nextSlide() { showSlide(current + 1); }
+        function prevSlide() { showSlide(current - 1); }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+                e.preventDefault();
+                nextSlide();
+            }
+            if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                prevSlide();
+            }
+            if (e.key === 'Home') {
+                e.preventDefault();
+                showSlide(1);
+            }
+            if (e.key === 'End') {
+                e.preventDefault();
+                showSlide(total);
+            }
+        });
+
+        // Click navigation (click right side = next, left side = prev)
+        document.querySelector('.slides-container').addEventListener('click', (e) => {
+            if (e.target.closest('.nav-controls') || e.target.closest('button') || e.target.closest('a')) return;
+            const x = e.clientX;
+            const width = window.innerWidth;
+            if (x > width * 0.6) nextSlide();
+            else if (x < width * 0.4) prevSlide();
+        });
+
+        // Touch support
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+        document.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) nextSlide();
+                else prevSlide();
+            }
+        });
+
+        showSlide(1);
+
+        // =====================================================
+        // CLAUDEKIT GROWTH CHART (Slide 17)
+        // =====================================================
+        const claudekitCtx = document.getElementById('claudekitChart');
+        if (claudekitCtx) {
+            new Chart(claudekitCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Start', 'Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'Month 6'],
+                    datasets: [{
+                        label: 'Followers',
+                        data: [900, 2500, 5000, 8000, 12000, 17000, 21000],
+                        borderColor: '#FF5252',
+                        backgroundColor: 'rgba(255, 82, 82, 0.1)',
+                        borderWidth: 4,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#FFEB3B',
+                        pointBorderColor: '#000',
+                        pointBorderWidth: 2,
+                        pointRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(0,0,0,0.1)' },
+                            ticks: {
+                                color: '#000',
+                                font: { family: 'Space Grotesk', weight: 600 }
+                            }
+                        },
+                        y: {
+                            grid: { color: 'rgba(0,0,0,0.1)' },
+                            ticks: {
+                                color: '#000',
+                                font: { family: 'Space Grotesk', weight: 600 },
+                                callback: (value) => value >= 1000 ? (value/1000) + 'K' : value
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+
+    <!--
+    =====================================================
+    NANO BANANA PROMPTS COLLECTION
+    =====================================================
+
+    PROMPT 1 - AI Landscape (Slide 3):
+    Technical blueprint illustration of a futuristic AI landscape in 2026. Isometric view showing three interconnected platforms: (1) Agentic Coding - robots controlling code agents, (2) On-the-Fly Software - self-building software structures, (3) AI Race - abstract company towers competing. Style: Neobrutalism technical drawing with bold black outlines 4px, yellow #FFEB3B, red #FF5252, blue #2196F3 accent colors. Circuit board patterns in background. Wireframe aesthetic. NEVER include text or watermarks. Aspect ratio 16:9. Professional technical illustration.
+
+    PROMPT 2 - Agentic Coding (Slide 4):
+    Technical illustration of a human pilot in cockpit controlling multiple AI robot agents. Isometric blueprint style. The pilot has steering wheel and dashboard with metrics. 5-6 small robot agents are executing code tasks around. Style: Neobrutalism with bold black outlines 4px, yellow #FFEB3B highlights on dashboard, red #FF5252 on warning indicators, blue #2196F3 on robots. Wireframe and circuit patterns. NEVER include text. Aspect ratio 16:9.
+
+    PROMPT 3 - Self-Building Software (Slide 5):
+    Technical blueprint of self-evolving software concept. Central large cube/block generating smaller cubes automatically. Conveyor belt of code blocks being assembled. Robotic arms building software modules. Style: Neobrutalism isometric view, bold black outlines 4px, yellow #FFEB3B for main structure, blue #2196F3 for generated modules, red #FF5252 for energy/power indicators. Circuit board background pattern. Wireframe aesthetic. NEVER include text. Aspect ratio 16:9.
+
+    PROMPT 4 - Personal Tools (Slide 8):
+    Technical blueprint of a person at desk building custom software tools with AI assistance. Isometric view. Person with laptop, multiple floating tool windows around: calendar, dashboard, charts. Small robot assistant helping. Style: Neobrutalism with bold black outlines 4px, yellow #FFEB3B for highlights, blue #2196F3 for tool windows, red #FF5252 for important elements. Wireframe aesthetic, circuit patterns. NEVER include text. Aspect ratio 16:9.
+
+    PROMPT 5 - Community Collaboration (Slide 19):
+    Technical blueprint illustration of community collaboration. Multiple people standing together on interconnected platforms, helping each other climb up. Hands reaching out to help. Isometric view. Style: Neobrutalism with bold black outlines 4px, yellow #FFEB3B for people/highlights, blue #2196F3 for platforms, warm atmosphere. Wireframe aesthetic. NEVER include text. Aspect ratio 16:9.
+
+    =====================================================
+    -->
+</body>
+</html>

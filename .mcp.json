@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "ui-ux-pro-max": {
+      "type": "http",
+      "url": "https://mcp-ui-ux-pro-max.digitop-vn.workers.dev/mcp",
+      "headers": {
+        "Authorization": "Bearer sk_W4qJyCPzt3ijdnGUBC16CE0dRKsial8SqmnTn7aYCqY"
+      }
+    }
+  }
+}
