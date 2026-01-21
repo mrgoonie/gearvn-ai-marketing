@@ -2,6 +2,10 @@
 
 Marketing assets và campaigns cho GearVN, powered by [ClaudeKit.cc](https://claudekit.cc).
 
+## Demo
+
+👉 [Check it out!](https://mrgoonie.github.io/gearvn-ai-marketing/ai-workforce-2026-goc-nhin-ai.html)
+
 ## Giới thiệu ClaudeKit
 
 **ClaudeKit** là bộ công cụ AI subagents và workflows giúp tăng cường khả năng của Claude Code cho teams phát triển phần mềm và marketing.
