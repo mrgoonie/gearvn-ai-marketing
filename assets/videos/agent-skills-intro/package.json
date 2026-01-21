@@ -1,0 +1,23 @@
+{
+  "name": "agent-skills-intro",
+  "version": "1.0.0",
+  "description": "Video introducing ClaudeKit Agent Skills: ai-multimodal, ai-artist, ui-ux-pro-max",
+  "scripts": {
+    "start": "remotion studio",
+    "build": "remotion render AgentSkillsIntro out/agent-skills-intro.mp4",
+    "build:gif": "remotion render AgentSkillsIntro out/agent-skills-intro.gif --image-format=png",
+    "upgrade": "remotion upgrade"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.298",
+    "@remotion/google-fonts": "4.0.298",
+    "@remotion/transitions": "4.0.298",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "remotion": "4.0.298"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.0",
+    "typescript": "5.8.3"
+  }
+}
